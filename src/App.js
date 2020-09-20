@@ -1,11 +1,20 @@
 import React, {useState} from 'react';
 import Editor from "./component/editor/Editor";
+import "./index.css";
 
 function App() {
 
   const [html, setHtml] = useState("");
   const [css, setCss] = useState("");
   const [js, setJs] = useState("");
+
+  const srcDoc =
+    `<html>
+    <body>${html}</body>
+    <style>${css}</style>
+    <script>${js}</script>
+    </html>`
+
   return (
     <>
       <div className="pane top-pane">
@@ -30,6 +39,7 @@ function App() {
       </div>
       <div className="pane ">
         <iframe
+          srcDoc={srcDoc}
           title="output"
           sandbox="allow-scripts"
           frameBorder="0"
@@ -37,7 +47,6 @@ function App() {
           height="100%"
         />
       </div>
-      <div></div>
     </>
   );
 }
